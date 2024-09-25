@@ -1,15 +1,8 @@
 import os
 from crewai import Agent, Task, Crew, Process
-from langchain_openai import ChatOpenAI
 
 # Setup your environment for the local Llama2 model
 os.environ["OPENAI_API_KEY"] = "DUMMY_API"
-
-# Create the Agent using a local model
-llm = ChatOpenAI(
-    model="ollama/llama3.1:8b", 
-    base_url="http://localhost:11434"
-)
 
 agent = Agent(
     role='AI Expert',
