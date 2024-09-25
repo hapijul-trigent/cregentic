@@ -3,8 +3,6 @@
 echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
-
-
 echo "Installing Ollama CLI..."
 curl -fsSL https://ollama.com/install.sh | sh
 
