@@ -20,7 +20,13 @@ This guide will help you install and set up Ollama on your local machine using t
    Execute the following command to install Ollama and set up the model:
 
    ```bash
+   # Terminal 1
    bash setup_ollama_locally.sh
+   ```
+
+   ```bash
+   # Terminal 2
+   bash run_ollama_locally.sh
    ```
 
    This script will:
