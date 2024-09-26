@@ -51,7 +51,7 @@ class CrewManager:
         return self.crew.kickoff()
 
 
-def main():
+def example():
     EnvironmentSetup.setup("DUMMY_API")
 
     agent_creator = AgentCreator(
@@ -76,4 +76,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    example()
