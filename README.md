@@ -17,7 +17,8 @@
 - **config/**: Houses configuration files for each agent, as well as general settings.
 - **core/**: Core management scripts for agents and task scheduling.
 - **data/**: Stores various data used by the agents, including drafts, feedback, and trending topics.
-- **models/**: Contains the model files used for content generation.
+- **tools/**: Contains the tools files for agents.
+- **tasks**: Containe Tasks assigned to agents.
 - **tests/**: Unit tests for various agents and core functionality.
 - **utils/**: Utility scripts for file I/O, data validation, and other common operations.
 
