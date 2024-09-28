@@ -1,5 +1,5 @@
 from crewai import Agent
-from tools.search_tool import serper_search_tool
+from tools.search_tools import serper_search_tool
 
 
 class OutlineDrafterAgent:
