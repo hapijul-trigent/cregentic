@@ -11,7 +11,7 @@ from tasks.story_drafting_task import StoryDrafterAgent
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 
-# TODO : Venkatesh will add Researcher Agent
+# TODO : Venkatesh will add Researcher Agent -> worked on this -> Should connect with Happy and update it.
 # load all agents
 outline_drafter_agent = OutlineDrafterAgent.load_agent()
 draft_writer_agent =  DraftWriterAgent.load_agent()
