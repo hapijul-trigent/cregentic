@@ -13,5 +13,5 @@ class EditorReviewingTask:
                 ),
                 expected_output='Feedback on the article saved to feedback.txt',
                 agent=agent,
-                output_file='feedback.txt'
+                output_file='data/feedback.txt'
             )
