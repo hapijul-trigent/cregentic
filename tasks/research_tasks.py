@@ -4,7 +4,7 @@ class TrendResearcherTask:
     """Task responsible for finding trending topics in AI."""
 
     @staticmethod
-    def research_trends(agent: Agent) -> Task:
+    def assign_task(agent: Agent) -> Task:
         return Task(
                 description=(
                     'Conduct a thorough and comprehensive research on the latest trends in the AI industry. '
