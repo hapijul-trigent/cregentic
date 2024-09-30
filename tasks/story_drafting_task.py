@@ -9,5 +9,6 @@ class StoryDraftingTask:
         return Task(
                 description="Refine the {draft_article} to enhance its narrative and engagement.",
                 expected_output="A refined article with engaging storytelling within 1200-300 words.",
-                agent=agent
+                agent=agent,
+                output_file="data/enhanced_draft.txt"
             )
