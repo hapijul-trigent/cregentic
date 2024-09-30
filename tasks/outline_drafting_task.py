@@ -9,5 +9,6 @@ class OutlineDraftingTask:
         return Task(
                 description="Create a detailed outline for {topic} with relevant research links.",
                 expected_output="Must be a structured outline with headings and research links.",
-                agent=agent
+                agent=agent,
+                output_file="data/outline.txt"
             )

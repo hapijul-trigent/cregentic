@@ -1,3 +1,10 @@
+import sys
+import os
+
+for root, dirs, files in os.walk("."):
+  for dir in dirs:
+    sys.path.append(os.path.abspath(os.path.join(root, dir)))
+
 from typing import Dict
 from crewai import Crew, Process
 from agents.outline_agent import OutlineDrafterAgent
@@ -9,7 +16,7 @@ from agents.research_agent import TrendResearcherAgent
 from tasks.research_tasks import TrendResearcherTask
 from tasks.outline_drafting_task import OutlineDraftingTask
 from tasks.draft_writing_task import DraftWritingTask
-from tasks.story_drafting_task import StoryDrafterAgent
+from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 
@@ -94,6 +101,7 @@ def run_crews(topic: Dict):
 
 
 if __name__ == '__main__':
+
     researcher_crew = Crew(
         agents=[agent],
         tasks=[research],

@@ -9,5 +9,6 @@ class DraftWritingTask:
         return Task(
                 description="Draft a compelling article based on the provided {outline}.",
                 expected_output="A full detailed article in 1000-1200",
-                agent=agent
+                agent=agent,
+                output_file="data/draft.txt"
             )

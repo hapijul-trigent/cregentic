@@ -10,5 +10,5 @@ class PublishingTask:
                 description="Convert the final draft arttcle into markdown format. Here is the final draft: {enhanced_draft}",
                 expected_output="A markdown formatted article.",
                 agent=agent,
-                output_file="final_article.md"
+                output_file="data/published_article.md"
             )
