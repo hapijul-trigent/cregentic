@@ -12,14 +12,17 @@ from agents.writer_agent import DraftWriterAgent
 from agents.story_drafter_agent import StoryDrafterAgent
 from agents.editor_agent import EditorAgent
 from agents.publisher_agent import PublisherAgent
+from agents.research_agent import TrendResearcherAgent
+from tasks.research_tasks import TrendResearcherTask
 from tasks.outline_drafting_task import OutlineDraftingTask
 from tasks.draft_writing_task import DraftWritingTask
 from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 
-# TODO : Venkatesh will add Researcher Agent
+# TODO : Venkatesh will add Researcher Agent -> worked on this -> Should connect with Happy and update it.
 # load all agents
+research_Agent = TrendResearcherAgent.load_agent()
 outline_drafter_agent = OutlineDrafterAgent.load_agent()
 draft_writer_agent =  DraftWriterAgent.load_agent()
 story_drafter_agent = StoryDrafterAgent.load_agent()
@@ -28,6 +31,7 @@ publisher_agent = PublisherAgent.load_agent()
 
 
 # Assign Task
+trend_researcher_task = TrendResearcherTask.assign_task(agent=TrendResearcherAgent)
 outline_drafting_task = OutlineDraftingTask.assign_task(agent=outline_drafter_agent)
 draft_writing_task = DraftWritingTask.assign_task(agent=draft_writer_agent)
 story_drafting_task = StoryDraftingTask.assign_task(agent=story_drafter_agent)
@@ -35,8 +39,7 @@ editor_reviewing_task = EditorReviewingTask.assign_task(agent=editor_agent)
 publishing_task = PublishingTask.assign_task(agent=publisher_agent)
 
 
-
-def run_crews(topic: Dict):
+def run_crews(topic: Dict): 
     """Run all Article Generator crews for given topic."""
     outline_drafter_crew = Crew(
         agents=[outline_drafter_agent],
@@ -98,5 +101,13 @@ def run_crews(topic: Dict):
 
 
 if __name__ == '__main__':
-    topic = {'topic': 'Big Tech Enters an AI Arms Race'}
+
+    researcher_crew = Crew(
+        agents=[agent],
+        tasks=[research],
+        verbose=False,
+        process=Process.sequential
+    )
+    trend_topics = researcher_crew.kickoff()
+    topic = {'topic': 'Generative AI in Finance'}
     run_crews(topic)
