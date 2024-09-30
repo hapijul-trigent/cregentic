@@ -1,4 +1,5 @@
 crewai
 langchain
-langchain_community
 crewai_tools
+duckduckgo-search
+langchain-community==0.2.7
