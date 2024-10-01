@@ -19,6 +19,8 @@ from tasks.draft_writing_task import DraftWritingTask
 from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
+import agentops
+# agentops.init("KEY")
 
 # TODO : Venkatesh will add Researcher Agent -> worked on this -> Should connect with Happy and update it.
 # load all agents
@@ -31,7 +33,7 @@ publisher_agent = PublisherAgent.load_agent()
 
 
 # Assign Task
-trend_researcher_task = TrendResearcherTask.assign_task(agent=TrendResearcherAgent)
+trend_researcher_task = TrendResearcherTask.assign_task(agent=research_Agent)
 outline_drafting_task = OutlineDraftingTask.assign_task(agent=outline_drafter_agent)
 draft_writing_task = DraftWritingTask.assign_task(agent=draft_writer_agent)
 story_drafting_task = StoryDraftingTask.assign_task(agent=story_drafter_agent)
@@ -103,11 +105,27 @@ def run_crews(topic: Dict):
 if __name__ == '__main__':
 
     researcher_crew = Crew(
-        agents=[agent],
-        tasks=[research],
+        agents=[research_Agent],
+        tasks=[trend_researcher_task],
         verbose=False,
         process=Process.sequential
     )
     trend_topics = researcher_crew.kickoff()
-    topic = {'topic': 'Generative AI in Finance'}
+    print(trend_topics)
+    import pandas as pd
+
+    # Load the JSON file
+    df = pd.read_json('data/trending_ai_topics.json')
+
+    # View the first row of the DataFrame
+    first_row = df.iloc[0]
+
+    # Extract the 'topics' column for the first row
+    trending_topic = first_row['Topic']
+
+    # Display the results
+    print("First Row Data:\n", first_row)
+    print("\nTopics in the First Row:\n", trending_topic)
+
+    topic = {'topic': str(trending_topic)}
     run_crews(topic)
