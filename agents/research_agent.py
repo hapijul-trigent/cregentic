@@ -1,6 +1,6 @@
 
 from crewai import Agent
-from tools.search_tool import serper_search_tool, duck_search_tool
+from tools.search_tools import serper_search_tool, duck_search_tool
 
 class TrendResearcherAgent:
     """Agent Responsible for giving the Finding Trending topics in AI."""
