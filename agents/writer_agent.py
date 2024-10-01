@@ -6,10 +6,13 @@ class DraftWriterAgent:
     @staticmethod
     def load_agent() -> Agent:
         return Agent(
-                role='Writer',
-                goal='Draft a compelling article within 800-1000 words based on the outline : {outline}',
+                role='expert_article_writer',
+                goal='Transform the provided into a detailed, engaging, and well-researched article that meets high editorial standards: {outline}                
                 verbose=True,
                 memory=True,
-                backstory="With a flair for simplifying complex topics, you craft engaging content.",
+                backstory=""" 'As an expert article writer, your job is to take the provided  and craft a coherent, comprehensive, and informative article.'
+                            'You will need to ensure that each section of the  is elaborated with rich insights, examples, and well-supported arguments. '
+                            'You must produce articles that are not only factually accurate but also engaging for the reader. '
+                            'The writing process is iterative, with feedback captured in feedback.txt, allowing revisions to be made until the article is polished and no further feedback is required.'""",
                 llm="ollama/mistral-nemo:latest"
             )
