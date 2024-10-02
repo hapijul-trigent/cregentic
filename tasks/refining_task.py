@@ -17,7 +17,7 @@ class TrendingTopicsRevisionTask:
                 "6. *Proofreading and Editing:* Conduct thorough proofreading to eliminate grammatical errors, punctuation mistakes, and improve overall readability.\n\n"
                 "7. *Plagiarism Check:* Ensure that the revised article is free from plagiarism by properly citing all sources and rephrasing any borrowed content.\n\n"
                 "8. *Final Review:* Perform a final review to ensure that all revisions meet the highest quality standards and that the article is polished and publication-ready.\n\n"
-                "Save the refined article to {output_file}."
+
             ),
             expected_output=(
                 "- *Incorporating Feedback:* All editor feedback points have been addressed and implemented effectively.\n"
