@@ -34,7 +34,7 @@ publisher_agent = PublisherAgent.load_agent()
 
 
 # Assign Task
-trend_researcher_task = TrendResearcherTask.assign_task(agent=research_Agent)
+trend_researcher_task = TrendResearcherTask.assign_task(agent=research_agent)
 outline_drafting_task = OutlineDraftingTask.assign_task(agent=outline_drafter_agent)
 draft_writing_task = DraftWritingTask.assign_task(agent=draft_writer_agent)
 story_drafting_task = StoryDraftingTask.assign_task(agent=story_drafter_agent)
