@@ -20,11 +20,12 @@ from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 import agentops
+import pandas as pd
 # agentops.init("KEY")
 
 # TODO : Venkatesh will add Researcher Agent -> worked on this -> Should connect with Happy and update it.
 # load all agents
-research_Agent = TrendResearcherAgent.load_agent()
+research_agent = TrendResearcherAgent.load_agent()
 outline_drafter_agent = OutlineDrafterAgent.load_agent()
 draft_writer_agent =  DraftWriterAgent.load_agent()
 story_drafter_agent = StoryDrafterAgent.load_agent()
@@ -33,13 +34,30 @@ publisher_agent = PublisherAgent.load_agent()
 
 
 # Assign Task
-trend_researcher_task = TrendResearcherTask.assign_task(agent=research_Agent)
+trend_researcher_task = TrendResearcherTask.assign_task(agent=research_agent)
 outline_drafting_task = OutlineDraftingTask.assign_task(agent=outline_drafter_agent)
 draft_writing_task = DraftWritingTask.assign_task(agent=draft_writer_agent)
 story_drafting_task = StoryDraftingTask.assign_task(agent=story_drafter_agent)
 editor_reviewing_task = EditorReviewingTask.assign_task(agent=editor_agent)
 publishing_task = PublishingTask.assign_task(agent=publisher_agent)
 
+
+def run_researcher():
+    """Run Researcher Crew to fetch trending topics"""
+    global research_agent, trend_researcher_task
+    researcher_crew = Crew(
+        agents=[research_agent],
+        tasks=[trend_researcher_task],
+        verbose=False,
+        process=Process.sequential
+    )
+    trend_topics = researcher_crew.kickoff()
+
+    
+    with open('data/trending_topics.json', mode='w') as f:
+        cleaned_string = str(trend_topics.raw).replace('**', '')
+        cleaned_string = cleaned_string.replace('```json', '').replace('```', '').strip()
+        f.write(cleaned_string)
 
 def run_crews(topic: Dict): 
     """Run all Article Generator crews for given topic."""
@@ -103,29 +121,13 @@ def run_crews(topic: Dict):
 
 
 if __name__ == '__main__':
+    run_researcher()
 
-    researcher_crew = Crew(
-        agents=[research_Agent],
-        tasks=[trend_researcher_task],
-        verbose=False,
-        process=Process.sequential
-    )
-    trend_topics = researcher_crew.kickoff()
-    print(trend_topics)
-    import pandas as pd
-
-    # Load the JSON file
-    df = pd.read_json('data/trending_ai_topics.json')
-
-    # View the first row of the DataFrame
+    df = pd.read_json('data/trending_topics.json')
     first_row = df.iloc[0]
-
-    # Extract the 'topics' column for the first row
     trending_topic = first_row['Topic']
 
-    # Display the results
-    print("First Row Data:\n", first_row)
-    print("\nTopics in the First Row:\n", trending_topic)
+
 
     topic = {'topic': str(trending_topic)}
     run_crews(topic)
