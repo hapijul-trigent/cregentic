@@ -82,40 +82,45 @@ def run_drafting_crews(topic: Dict):
     draft_writer_crew_inputs = {'outline': outline.raw}
     draft_article = draft_writer_crew.kickoff(inputs=draft_writer_crew_inputs)
 
+    # Feedback loop
+    story_drafter_crew = Crew(
+        agents=[story_drafter_agent],
+        tasks=[story_drafting_task],
+        process=Process.sequential,
+        verbose=False
+    )
+
+    editor_reviewing_crew = Crew(
+        agents=[editor_agent],
+        tasks=[editor_reviewing_task],
+        process=Process.sequential,
+        verbose=False
+    )
+
+    refiner_crew = Crew(
+        agents=[reviser_agent],
+        tasks=[refining_task],
+        process=Process.sequential,
+        verbose=False
+    )
 
     for revision in ['1', '2']:
-        story_drafter_crew = Crew(
-            agents=[story_drafter_agent],
-            tasks=[story_drafting_task],
-            process=Process.sequential,
-            verbose=False
-        )
-        story_drafter_crew_inputs = {'draft_article': draft_article.raw}
-        enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
 
+        # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
+        # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
 
-        editor_reviewing_crew = Crew(
-            agents=[editor_agent],
-            tasks=[editor_reviewing_task],
-            process=Process.sequential,
-            verbose=False
-        )
-        editor_reviewing_crew_inputs = {'enhanced_draft': enhanced_draft.raw}
+        editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw}
         feedback = editor_reviewing_crew.kickoff(inputs=editor_reviewing_crew_inputs)
 
-        refiner_crew = Crew(
-            agents=[reviser_agent],
-            tasks=[refining_task],
-            process=Process.sequential,
-            verbose=False
-        )
-        refiner_crew_inputs = {'draft_article': enhanced_draft.raw, 'feedbacks': feedback.raw}
+        refiner_crew_inputs = {'draft_article': draft_article.raw, 'feedbacks': feedback.raw}
         draft_article = refiner_crew.kickoff(inputs=refiner_crew_inputs)
-
+ 
+    # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
+    # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
     return {
         'outline': outline.raw,
         'draft_article': draft_article.raw,
-        'enhanced_draft': enhanced_draft.raw,
+        # 'enhanced_draft': enhanced_draft.raw,
         'feedback': feedback.raw,
     }
 
