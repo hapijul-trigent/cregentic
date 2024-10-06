@@ -113,12 +113,12 @@ def run_drafting_crews(topic: Dict):
         verbose=False
     )
     with st.spinner("Refining the Article"):
-        for revision in ['1', '2']:
+        for revision in ['1','2']:
 
             # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
             # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
             with st.spinner("Editor Reviewing the Article Draft"):
-                editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw}
+                editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw, 'outline' : outline.raw}
                 feedback = editor_reviewing_crew.kickoff(inputs=editor_reviewing_crew_inputs)
             with st.spinner("Working on the Editor's Feedback"):
                 refiner_crew_inputs = {'draft_article': draft_article.raw, 'feedbacks': feedback.raw}

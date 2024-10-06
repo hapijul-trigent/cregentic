@@ -104,12 +104,12 @@ def run_drafting_crews(topic: Dict):
         verbose=False
     )
 
-    for revision in ['1', '2']:
+    for revision in ['1']:
 
         # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
         # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
 
-        editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw}
+        editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw, 'outline' : outline.raw}
         feedback = editor_reviewing_crew.kickoff(inputs=editor_reviewing_crew_inputs)
 
         refiner_crew_inputs = {'draft_article': draft_article.raw, 'feedbacks': feedback.raw}
