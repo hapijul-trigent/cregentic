@@ -113,7 +113,7 @@ def run_drafting_crews(topic: Dict):
         verbose=False
     )
     with st.spinner("Refining the Article"):
-        for revision in ['1','2']:
+        for revision in ['1']:
 
             # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
             # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
@@ -262,14 +262,39 @@ with col2:
       else:
           st.write("Select a topic and generate an article to see the final result here.")
 
-st.markdown("""
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<div style="text-align: center;">
-    <p>
-        Copyright © 2024 | <a href="https://trigent.com/ai/" target="_blank" aria-label="Trigent Website">Trigent Software Inc.</a> All rights reserved. |
-        <a href="https://www.linkedin.com/company/trigent-software/" target="_blank" aria-label="Trigent LinkedIn"><i class="fab fa-linkedin"></i></a> |
-        <a href="https://www.twitter.com/trigentsoftware/" target="_blank" aria-label="Trigent Twitter"><i class="fab fa-twitter"></i></a> |
-        <a href="https://www.youtube.com/channel/UCNhAbLhnkeVvV6MBFUZ8hOw" target="_blank" aria-label="Trigent Youtube"><i class="fab fa-youtube"></i></a>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+footer_html = """
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <div style="text-align: center;">
+       <p>
+           Copyright © 2024 | <a href="https://trigent.com/ai/" target="_blank" aria-label="Trigent Website">Trigent Software Inc.</a> All rights reserved. |
+           <a href="https://www.linkedin.com/company/trigent-software/" target="_blank" aria-label="Trigent LinkedIn"><i class="fab fa-linkedin"></i></a> |
+           <a href="https://www.twitter.com/trigentsoftware/" target="_blank" aria-label="Trigent Twitter"><i class="fab fa-twitter"></i></a> |
+           <a href="https://www.youtube.com/channel/UCNhAbLhnkeVvV6MBFUZ8hOw" target="_blank" aria-label="Trigent Youtube"><i class="fab fa-youtube"></i></a>
+       </p>
+   </div>
+   """
+
+footer_css = """
+   <style>
+   .footer {
+       position: fixed;
+       z-index: 1000;
+       left: 0;
+       bottom: 0;
+       width: 100%;
+       background-color: white;
+       color: black;
+       text-align: center;
+   }
+   [data-testid="stSidebarNavItems"] {
+       max-height: 100%!important;
+   }
+   [data-testid="collapsedControl"] {
+       display: none;
+   }
+   </style>
+   """
+
+footer = f"{footer_css}<div class='footer'>{footer_html}</div>"
+
+st.markdown(footer, unsafe_allow_html=True)
