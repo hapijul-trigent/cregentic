@@ -259,6 +259,12 @@ with col2:
       st.header("Published Article")
       if 'published_article' in st.session_state:
           st.markdown(st.session_state['published_article'])
+          st.download_button(
+               label="Download Article",
+               data=st.session_state['published_article'],
+               file_name="generated_article.txt",
+               mime="text/plain"
+          )
       else:
           st.write("Select a topic and generate an article to see the final result here.")
 
