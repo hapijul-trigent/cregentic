@@ -20,7 +20,7 @@ class EditorReviewingTask:
                     "The final output should be of 1500-2000 words article that strictly follows the outline and is ready for further refinement."
                 ),
                 expected_output=(
-                    "A validated draft article and feedback saved in feedback.txt. The feedback should include:\n"
+                    "The feedback should include:\n"
                     "- Identification of any missing or misaligned sections.\n"
                     "- Suggestions for improvement in areas that do not meet the outline's requirements.\n"
                     "- Confirmation that the word count meets the 3000-word requirement."

@@ -15,7 +15,6 @@ class OutlineDrafterAgent:
                     "The final outline should serve as a robust framework that facilitates efficient and high-quality article writing."
                 ),
                 verbose=True,
-                memory=True,
                 backstory=(
                     "You are an expert content strategist with a deep understanding of various subjects. "
                     "Your strength lies in dissecting complex topics into comprehensive, well-organized outlines. "

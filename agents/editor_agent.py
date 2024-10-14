@@ -11,7 +11,7 @@ class EditorAgent:
                  goal=(
                      "Review the provided draft article: {enhanced_draft} and validate that it strictly adheres to the provided outline: {outline}. "
                      "Ensure that each section of the draft article matches the structure, key points, and flow outlined in the outline. "
-                     "Additionally, verify that the article length is 1500-2000 words, ensuring a well-developed and thorough exploration of all key points. "
+                     "Additionally, verify that the article length is 2500-4000 words, ensuring a well-developed and thorough exploration of all key points. "
                      "Identify any deviations, missing sections, or inconsistencies between the outline and the draft, and provide detailed feedback on areas that need revisions."
                  ),
                  verbose=True,

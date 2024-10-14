@@ -15,7 +15,6 @@ class PublisherAgent:
                 "you'll be converting is: {enhanced_draft}."
             ),
             verbose=True,
-            memory=True,
             backstory=(
                 "As the Publisher, your role is crucial in transforming completed drafts into polished markdown articles. "
                 "You work closely with the StoryDrafterAgent to ensure that every article is formatted consistently and "

@@ -11,7 +11,7 @@ class DraftWriterAgent:
                 role='Expert AI Technology Article Writer',
                 goal=(
                     "Write a comprehensive draft of the article based on the provided outline: {outline}."
-                    "Ensure that all key points are thoroughly covered, maintaining a target length of 1500-2000 words."
+                    "Ensure that all key points are thoroughly covered, maintaining 2500-4000 word count."
                     "Utilize advanced writing techniques to enhance readability, coherence, and engagement."
                     "Incorporate relevant examples and explanations to support each section outlined."
                     "The final draft should be well-structured, informative, and ready for further refinement by the EditorAgent."
