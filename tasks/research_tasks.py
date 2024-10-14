@@ -1,4 +1,4 @@
-from crewai import Task
+from crewai import Task, Agent
 
 class TrendResearcherTask:
     """Task for Finding Trending AI Topics."""
