@@ -224,23 +224,23 @@ with col1:
 
     with subcol1:
         for i in range(min(5, num_topics)):
-            topic = data[i]['Topic']
+            topic = data[i]["Topic Name"]
             st.button(topic, key=f"button_{i}", on_click=select_topic, args=(topic,))
 
     with subcol2:
         for i in range(5, min(10, num_topics)):
-            topic = data[i]['Topic']
+            topic = data[i]["Topic Name"]
             st.button(topic, key=f"button_{i}", on_click=select_topic, args=(topic,))
 
     if st.session_state['selected_topic']:
-        selected_topic = next((item for item in data if item['Topic'] == st.session_state['selected_topic']), None)
+        selected_topic = next((item for item in data if item["Topic Name"] == st.session_state['selected_topic']), None)
         if selected_topic:
-            st.write(f"**Selected Topic:** {selected_topic['Topic']}")
+            st.write(f"**Selected Topic:** {selected_topic['Topic Name']}")
             st.write(f"**Description:** {selected_topic['Description']}")
 
         if st.button("Generate Article"):
             
-            topic = {'topic': str(selected_topic['Topic'])}
+            topic = {'topic': str(selected_topic["Topic Name"])}
             drafting_crews_output = run_drafting_crews(topic)
             published_article = run_publisher_crews(drafting_crews_output=drafting_crews_output)
 
@@ -262,8 +262,8 @@ with col2:
           st.download_button(
                label="Download Article",
                data=st.session_state['published_article'],
-               file_name="generated_article.txt",
-               mime="text/plain"
+               file_name="published_article.md",
+               mime="text/markdown"
           )
       else:
           st.write("Select a topic and generate an article to see the final result here.")
