@@ -15,10 +15,10 @@ class DraftWritingTask:
                     "4. **Conclusion:** Summarize the main points discussed in the article and provide a closing thought or call to action.\n\n"
                     "5. **Consistency and Flow:** Ensure that the article flows logically from one section to the next, maintaining coherence and readability throughout.\n\n"
                     "6. **Proofreading and Editing:** Utilize integrated tools to check for grammatical errors, punctuation mistakes, and improve sentence structures for better readability.\n\n"
-                    "The final draft should be between 2000-2500 words, well-structured, informative, and ready for further refinement by the EditorAgent."
+                    "The final draft should be between 1500-2000 words, well-structured, informative, and ready for further refinement by the EditorAgent."
                 ),
                 expected_output=(
-                    "A detailed draft article saved as `draft_article.txt` containing:\n\n"
+                    "A detailed draft article containing:\n\n"
                     "- **Introduction:** An engaging opening that sets the stage for the article.\n"
                     "- **Section Development:** Expanded sections with thorough exploration of each key point.\n"
                     "- **Examples and Explanations:** Relevant examples and explanations that support and illustrate each point.\n"

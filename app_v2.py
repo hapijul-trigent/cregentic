@@ -69,7 +69,7 @@ def run_researcher():
         cleaned_string = cleaned_string.replace('```json', '').replace('```', '').strip()
         f.write(cleaned_string)
 
-def run_drafting_crews(topic: Dict): 
+def run_drafting_crews(topic_info: Dict): 
     """Run all Article Generator crews for given topic."""
     outline_drafter_crew = Crew(
         agents=[outline_drafter_agent],
@@ -78,7 +78,7 @@ def run_drafting_crews(topic: Dict):
         verbose=False
     )
     with st.spinner("Drafting Outline"):
-        outline = outline_drafter_crew.kickoff(inputs=topic)
+        outline = outline_drafter_crew.kickoff(inputs=topic_info)
     st.success('Outline Drafting Successful!')
 
     draft_writer_crew = Crew(
@@ -224,24 +224,24 @@ with col1:
 
     with subcol1:
         for i in range(min(5, num_topics)):
-            topic = data[i]['Topic']
+            topic = data[i]["Topic Name"]
             st.button(topic, key=f"button_{i}", on_click=select_topic, args=(topic,))
 
     with subcol2:
         for i in range(5, min(10, num_topics)):
-            topic = data[i]['Topic']
+            topic = data[i]["Topic Name"]
             st.button(topic, key=f"button_{i}", on_click=select_topic, args=(topic,))
 
     if st.session_state['selected_topic']:
-        selected_topic = next((item for item in data if item['Topic'] == st.session_state['selected_topic']), None)
+        selected_topic = next((item for item in data if item["Topic Name"] == st.session_state['selected_topic']), None)
         if selected_topic:
-            st.write(f"**Selected Topic:** {selected_topic['Topic']}")
+            st.write(f"**Selected Topic:** {selected_topic['Topic Name']}")
             st.write(f"**Description:** {selected_topic['Description']}")
 
         if st.button("Generate Article"):
             
-            topic = {'topic': str(selected_topic['Topic'])}
-            drafting_crews_output = run_drafting_crews(topic)
+            topic_info = {'topic': str(selected_topic["Topic Name"]), 'description': str(selected_topic["Description"])}
+            drafting_crews_output = run_drafting_crews(topic_info)
             published_article = run_publisher_crews(drafting_crews_output=drafting_crews_output)
 
             st.session_state['published_article'] = published_article
@@ -261,8 +261,8 @@ with col2:
           st.markdown(st.session_state['published_article'])
           st.download_button(
                label="Download Article",
-               data=st.session_state['published_article'].encode(),
-               file_name="generated_article.md",
+               data=st.session_state['published_article'],
+               file_name="published_article.md",
                mime="text/markdown"
           )
       else:
