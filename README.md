@@ -17,6 +17,9 @@ Cregentic is an AI-driven article generation platform that streamlines the entir
 
 Cregentic is designed to support a wide range of content creation activities by leveraging AI agents. Each agent focuses on a specific task in the content pipeline, ensuring seamless collaboration and efficiency. From ideation and drafting to revision and publishing, Cregentic can either fully automate the process or assist human creators by speeding up their workflows.
 
+![Flow](flow.png)
+
+
 ## **Key Features**
 
 - **AI Agents** for various stages of content creation: research, drafting, editing, and publishing.
