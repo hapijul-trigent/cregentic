@@ -1,27 +1,25 @@
-from crewai import Agent, Task
+from crewai import Task, Agent
 
 class TrendResearcherTask:
-    """Task responsible for finding trending topics in AI."""
+    """Task for Finding Trending AI Topics."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
-                description=(
-                    'Conduct a thorough and comprehensive research on the latest trends in the AI industry. '
-                    'The goal is to identify and analyze 10 distinct topics that are actively discussed in the AI field. '
-                    'Each topic should be backed by verified, reputable sources (e.g., peer-reviewed journals, trusted news outlets, or industry-leading reports). '
-                    'For each topic, provide a brief summary and relevant source information. Make sure the information gathered is accurate, fact-checked, and not based on speculation. '
-                    'Under no circumstances should any part of the research be hallucinated or fabricated. Use only trusted sources for compiling the results.'
-                ),
-                expected_output=(
-                    'A Json file containing 10 trending AI topics. Each entry should have: \n'
-                    '1. The topic name: topic \n'
-                    '2. A two-line summary derived from the source material: Description \n'
-                    '3. A valid, verifiable source link: Source \n'
-                    'The file must be structured with the following column names: Topic, Description, Sources. \n'
-                    'Ensure that each row adheres to this format, and that the content is free of errors or hallucinations. \n'
-                    'The research should be based on factual data and legitimate sources, ensuring clarity and precision.'
-                ),
-                agent=agent,
-                output_file='data/trending_ai_topics.json'
-            )
+            description=(
+                'Find 10 trending AI topics using online research. For each trend:\n'
+                '- Validate its relevance using at least two credible sources such as peer-reviewed journals, industry whitepapers, or reputable news outlets.\n'
+                '- Write a 200 to 250-word summary that is fact-checked and supported by verified data from the sources.\n'
+                '- Avoid any speculative information or unverified claims to ensure accuracy.\n'
+                '- Ensure all summaries are clear, concise, and precise.'
+            ),
+            expected_output=(
+                'The output should be a structured JSON file with 10 AI trends. Each entry must include:\n'
+                '1. **Topic Name**: The specific name of the AI trend.\n'
+                '2. **Description**: A 200 to 250-word fact-based summary supported by reliable sources.\n'
+                '3. **Sources**: Links to at least two credible and trustworthy sources for each trend.\n'
+                'Accuracy is key, and all information must be cross-verified with trustworthy sources to avoid errors.'
+            ),
+            agent=agent,
+            output_file='data/trending_ai_topics.json'
+        )
