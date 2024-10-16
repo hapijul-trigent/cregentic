@@ -1,35 +1,33 @@
 from crewai import Agent, Task
 
 class TrendingTopicsRevisionTask:
-    """Task responsible for assigning article revision to TrendingTopicsAIContentReviser."""
+    """Task responsible for assigning the article revision task to TrendingTopicsAIContentReviser."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
             description=(
-                "Revise the AI-generated draft article on a trending internet topic located at {draft_article} based on the editor's feedback provided in {feedbacks}. "
-                "Your revision should include the following steps:\n\n"
-                "1. *Incorporating Feedback:* Carefully read and understand the editor's feedback. Address each point meticulously, ensuring that all suggested changes are implemented effectively.\n\n"
-                "2. *Enhancing Accuracy and Relevance:* Verify the accuracy of all factual information and ensure that the content remains relevant to current internet trends. Update any outdated information as necessary.\n\n"
-                "3. *Improving Clarity and Coherence:* Refine the language to enhance clarity and coherence. Ensure that ideas flow logically and that transitions between sections are seamless.\n\n"
-                "4. *Boosting Engagement:* Utilize engagement strategies such as varied sentence structures, rhetorical questions, and compelling examples to make the article more captivating for readers.\n\n"
-                "5. *Maintaining Style and Tone:* Ensure that the article maintains a consistent style and tone appropriate for the target audience and publication standards.\n\n"
-                "6. *Proofreading and Editing:* Conduct thorough proofreading to eliminate grammatical errors, punctuation mistakes, and improve overall readability.\n\n"
-                "7. *Plagiarism Check:* Ensure that the revised article is free from plagiarism by properly citing all sources and rephrasing any borrowed content.\n\n"
-                "8. *Final Review:* Perform a final review to ensure that all revisions meet the highest quality standards and that the article is polished and publication-ready.\n\n"
-
+                "Your task is to revise the AI-generated draft article: {draft_article}, using the editor's feedback provided in: {feedbacks}. "
+                "The revision process must include the following steps:\n\n"
+                "1. **Incorporate Feedback:** Thoroughly review the editor's feedback and apply all suggested changes to improve the article.\n\n"
+                "2. **Enhance Accuracy and Relevance:** Verify and update any factual information, ensuring the article is aligned with current internet trends.\n\n"
+                "3. **Improve Clarity and Coherence:** Refine the text to make the language clearer and ensure the article flows logically between sections.\n\n"
+                "4. **Boost Engagement:** Enhance the article's appeal by varying sentence structures, adding compelling examples, and making it more engaging overall.\n\n"
+                "5. **Maintain Style and Tone:** Ensure the article maintains a consistent style and tone, suitable for the target audience and publication standards.\n\n"
+                "6. **Proofread for Errors:** Conduct a final check to correct grammatical and punctuation errors, and ensure overall readability.\n\n"
+                "7. **Check for Plagiarism:** Ensure the article is free from plagiarism by properly citing all sources and rephrasing any content where necessary.\n\n"
+                "8. **Final Review:** Perform a final review of the article to ensure it is polished and publication-ready."
             ),
             expected_output=(
-                "- *Incorporating Feedback:* All editor feedback points have been addressed and implemented effectively.\n"
-                "- *Enhancing Accuracy and Relevance:* The article contains accurate and up-to-date information relevant to current internet trends.\n"
-                "- *Improving Clarity and Coherence:* Enhanced clarity of ideas and logical flow with seamless transitions between sections.\n"
-                "- *Boosting Engagement:* Implementation of engagement strategies such as varied sentence structures and compelling examples.\n"
-                "- *Maintaining Style and Tone:* Consistent and appropriate style and tone aligned with target audience and publication standards.\n"
-                "- *Proofreading and Editing:* Corrected grammatical errors and improved overall readability.\n"
-                "- *Plagiarism Check:* The article is free from plagiarism, with all sources properly cited and content appropriately rephrased.\n"
-                "- *Final Review:* A polished, error-free article that is publication-ready."
+                "- **Incorporating Feedback:** All editor feedback has been addressed, and changes have been applied.\n"
+                "- **Enhancing Accuracy and Relevance:** The article contains accurate, up-to-date information aligned with current trends.\n"
+                "- **Improving Clarity and Coherence:** The article has been refined to ensure clear ideas and logical flow between sections.\n"
+                "- **Boosting Engagement:** Engagement strategies like varied sentence structures and compelling examples have been implemented.\n"
+                "- **Maintaining Style and Tone:** The article maintains a consistent style and tone suitable for the audience and publication standards.\n"
+                "- **Proofreading and Editing:** All grammatical and punctuation errors have been corrected, and readability is improved.\n"
+                "- **Plagiarism Check:** The article is free from plagiarism, with properly cited sources.\n"
+                "- **Final Review:** The article is polished, error-free, and publication-ready."
             ),
             agent=agent,
-            # input_files=['{ai_draft_file}', '{feedback_file}'],
             output_file='data/revised_article.txt'
         )
