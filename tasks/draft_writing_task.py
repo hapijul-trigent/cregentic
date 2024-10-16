@@ -1,31 +1,32 @@
 from crewai import Agent, Task
 
 class DraftWritingTask:
-    """Task responsible for assigning draft writing to WriterAgent."""
+    """Task responsible for assigning the detailed draft writing to the DraftWriterAgent."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
-                description=(
-                    "Write a comprehensive draft article based on the following outline: {outline}. "
-                    "Your draft should include the following elements:\n\n"
-                    "1. **Introduction:** Craft an engaging opening that introduces the topic and outlines the article's purpose.\n\n"
-                    "2. **Section Development:** Expand each section and subheading from the outline into detailed paragraphs. Ensure that each key point is thoroughly explored and supported with relevant information.\n\n"
-                    "3. **Examples and Explanations:** Incorporate relevant examples, case studies, or explanations to illustrate and support each point.\n\n"
-                    "4. **Conclusion:** Summarize the main points discussed in the article and provide a closing thought or call to action.\n\n"
-                    "5. **Consistency and Flow:** Ensure that the article flows logically from one section to the next, maintaining coherence and readability throughout.\n\n"
-                    "6. **Proofreading and Editing:** Utilize integrated tools to check for grammatical errors, punctuation mistakes, and improve sentence structures for better readability.\n\n"
-                    "The final draft should be between 1500-2000 words, well-structured, informative, and ready for further refinement by the EditorAgent."
-                ),
-                expected_output=(
-                    "A detailed draft article saved as `draft_article.txt` containing:\n\n"
-                    "- **Introduction:** An engaging opening that sets the stage for the article.\n"
-                    "- **Section Development:** Expanded sections with thorough exploration of each key point.\n"
-                    "- **Examples and Explanations:** Relevant examples and explanations that support and illustrate each point.\n"
-                    "- **Conclusion:** A concise summary and closing thought or call to action.\n"
-                    "- **Consistency and Flow:** Logical progression and seamless transitions between sections.\n"
-                    "- **Proofreading and Editing:** Corrected grammatical errors, punctuation mistakes, and improved sentence structures, ensuring a polished and readable draft."
-                ),
-                agent=agent,
-                output_file="data/draft_article.txt"
-            )
+            description=(
+                "Write a detailed draft of the article based on the following outline: {outline}. "
+                "The draft should cover the following elements:\n\n"
+                "1. **Introduction:** Write a captivating opening that introduces the topic and highlights the article's purpose.\n\n"
+                "2. **Section Development:** Expand each section and subheading from the outline into well-developed paragraphs. "
+                "Ensure each key point is explored thoroughly and supported by relevant information.\n\n"
+                "3. **Examples and Explanations:** Integrate specific examples, case studies, or explanations to illustrate each point effectively.\n\n"
+                "4. **Conclusion:** Summarize the main points covered in the article and provide a thoughtful closing or call to action.\n\n"
+                "5. **Consistency and Flow:** Maintain logical progression from one section to the next, ensuring readability and coherence.\n\n"
+                "6. **Proofreading and Editing:** Utilize integrated tools to identify and correct grammatical errors, punctuation issues, and enhance sentence structure.\n\n"
+                "The draft should be between 1500 to 2000 words, well-structured, informative, and polished, preparing it for further review by the Editor Agent."
+            ),
+            expected_output=(
+                "A comprehensive draft article including:\n\n"
+                "- **Introduction:** An engaging introduction that sets up the article.\n"
+                "- **Section Development:** Expanded sections with in-depth coverage of each key point.\n"
+                "- **Examples and Explanations:** Relevant examples, case studies, or explanations that illustrate each concept.\n"
+                "- **Conclusion:** A concise summary and closing thought or call to action.\n"
+                "- **Consistency and Flow:** Seamless transitions and a logical flow between sections.\n"
+                "- **Proofreading and Editing:** Polished text with corrected grammar, punctuation, and improved readability."
+            ),
+            agent=agent,
+            output_file="data/draft_article.txt"
+        )
