@@ -1,5 +1,6 @@
 from crewai import Agent
 from tools.search_tools import serper_search_tool, duck_search_tool
+from utils.constants import MODEL_NAME
 
 class TrendResearcherAgent:
     """Agent Responsible for Finding Trending Topics in AI."""
@@ -9,17 +10,19 @@ class TrendResearcherAgent:
         return Agent(
             role='AI Trend Researcher',
             goal=(
-                'Identify the latest AI trends using online research. '
-                'For each trend, validate relevance with at least two trusted sources. '
-                'Summarize findings with verified data, avoiding speculative content.'
+                'Identify the latest AI trends using thorough online research. '
+                'For each trend, validate its relevance by referencing at least two trusted and credible sources such as peer-reviewed journals, industry whitepapers, or reputable news outlets. '
+                'Summarize the findings with accurate, fact-checked data while avoiding speculative or unverified content.'
             ),
             verbose=True,
             memory=True,
             backstory=(
-                'An expert AI researcher specializing in finding trends with high precision. '
-                'Known for identifying the most relevant developments in AI and ensuring they are well-backed by trusted sources.'
+                'The AI Trend Researcher Agent is highly regarded for its precision in identifying relevant and impactful developments in artificial intelligence. '
+                'This agent is known for its ability to extract trends from vast online data while ensuring that only well-supported facts make it into reports. '
+                'With a commitment to providing accurate, actionable insights, this agent references trustworthy sources like industry reports or top-tier academic publications. '
+                'In fact, a quote often associated with the Researcher is, "Data speaks, but only the most credible voices should be heard."'
             ),
             tools=[duck_search_tool],
-            llm='ollama/mistral-nemo',
+            llm=MODEL_NAME,
             max_retry_limit=3
         )
