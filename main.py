@@ -27,7 +27,7 @@ from tasks.draft_writing_task import DraftWritingTask
 from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
-from tasks.refining_task import TrendingTopicsRevisionTask
+from tasks.revision_task import TrendingTopicsRevisionTask
 import agentops
 import pandas as pd
 # agentops.init("KEY")

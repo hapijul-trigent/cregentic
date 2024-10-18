@@ -1,25 +1,22 @@
 from crewai import Task, Agent
-
 class TrendResearcherTask:
-    """Task for Finding Trending AI Topics."""
+    """Task for finding and summarizing trending AI topics."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
             description=(
-                'Find 10 trending AI topics using online research. For each trend:\n'
-                '- Validate its relevance using at least two credible sources such as peer-reviewed journals, industry whitepapers, or reputable news outlets.\n'
-                '- Write a 200 to 250-word summary that is fact-checked and supported by verified data from the sources.\n'
-                '- Avoid any speculative information or unverified claims to ensure accuracy.\n'
-                '- Ensure all summaries are clear, concise, and precise.'
+                'Use the search tools to find 10 trending AI topics. For each topic:\n'
+                '- Ensure relevance by referencing at least two credible sources (peer-reviewed journals, industry reports, or news outlets).\n'
+                '- Write a 200 to 250-word summary with verified facts, avoiding speculative information.\n'
+                '- Format the output in a structured JSON format with topic name, description, and sources.'
             ),
             expected_output=(
-                'The output should be a structured JSON file with 10 AI trends. Each entry must include:\n'
-                '1. **Topic Name**: The specific name of the AI trend.\n'
-                '2. **Description**: A 200 to 250-word fact-based summary supported by reliable sources.\n'
-                '3. **Sources**: Links to at least two credible and trustworthy sources for each trend.\n'
-                'Accuracy is key, and all information must be cross-verified with trustworthy sources to avoid errors.'
+                'A structured JSON file containing:\n'
+                '- Topic name\n'
+                '- 200 to 250-word summary for each topic\n'
+                '- Two or more credible sources for each trend'
             ),
             agent=agent,
-            output_file='data/trending_ai_topics.json'
+            output_file='data/trending_topics.json'
         )

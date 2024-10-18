@@ -1,19 +1,16 @@
 from crewai import Agent, Task
-
 class StoryDraftingTask:
-    """Task responsible for assigning the story enhancement task to StoryDrafterAgent."""
+    """Task for enhancing the article's narrative through storytelling techniques."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
             description=(
-                'Your task is to take the {draft_article} and enhance its narrative. '
-                'Use storytelling techniques like metaphors, anecdotes, and quotes to make the content more engaging and coherent. '
-                'Ensure the article is reader-friendly, while maintaining the integrity of the original information.'
+                'Enhance the draft {draft_article} by adding storytelling elements such as anecdotes, metaphors, and quotes. '
+                'Ensure the narrative flow is coherent and engaging while maintaining technical accuracy.'
             ),
             expected_output=(
-                'The output should be a refined article with enhanced storytelling, between 2500 to 4500 words. '
-                'Ensure the article is engaging, well-structured, and maintains technical accuracy, while using storytelling techniques.'
+                'A 2500 to 4000-word article with a well-crafted narrative, using storytelling techniques to enhance reader engagement.'
             ),
             agent=agent
         )
