@@ -1,1 +1,1 @@
-MODEL_NAME= "ollama/llama3:instruct"
+MODEL_NAME= "ollama/llava:13b-v1.5-q2_K"
