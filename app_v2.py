@@ -156,7 +156,7 @@ with col1:
             st.write(f"**Description:** {selected_topic['description']}")
 
         if st.button("Generate Article"):
-            topic = {'topic': str(selected_topic["topic_name"])}
+            topic = {'topic': str(selected_topic["topic"]), 'description': str(selected_topic["Description"])}
             drafting_crews_output = run_drafting_crews(topic)
             published_article = run_publisher_crews(drafting_crews_output=drafting_crews_output)
 
