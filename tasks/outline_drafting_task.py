@@ -1,24 +1,24 @@
 from crewai import Agent, Task
 
 class OutlineDraftingTask:
-    """Task responsible for assigning outline drafting to OutlineDrafterAgent."""
+    """Task responsible for assigning the detailed outline drafting to OutlineDrafterAgent."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
-                description=(
-                    "Develop a comprehensive and structured outline for an in-depth article on the topic: {topic}. "
-                    "The outline should include clear section headings, subheadings, and detailed bullet points for each section. "
-                    "Additionally, incorporate relevant and credible research links to support each section, "
-                    "ensuring the content is well-founded and authoritative."
-                ),
-                expected_output=(
-                    "A meticulously organized outline containing:\n"
-                    "- Main section headings and subheadings\n"
-                    "- Detailed bullet points outlining key points and arguments for each section\n"
-                    "- Integrated credible research links and references for each section\n"
-                    "- Logical flow and coherence between sections to facilitate seamless article writing."
-                ),
-                agent=agent,
-                output_file="data/outline.txt"
-            )
+            description=(
+                "Expand on the high-level outline by creating a detailed and structured draft for the article on given topic: '{topic}' and description : '{description}'."
+                "Develop clear section headings, subheadings, and bullet points for each main idea. "
+                "Incorporate specific research links and references, as well as evidence to support each section, ensuring that each point is well-founded. "
+                "Ensure a logical progression of ideas, so that each section builds naturally upon the previous one to guide the writing process."
+            ),
+            expected_output=(
+                "A comprehensive and detailed outline containing:\n"
+                "- Main section headings and subheadings with supporting details\n"
+                "- Bullet points elaborating key ideas and arguments for each section\n"
+                "- Credible research links and references integrated into each relevant section\n"
+                "- A logical flow to support coherent writing from introduction to conclusion"
+            ),
+            agent=agent,
+            output_file="data/outline.txt"
+        )

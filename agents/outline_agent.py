@@ -1,27 +1,28 @@
 from crewai import Agent
-from tools.search_tools import serper_search_tool
+from tools.search_tools import duck_search_tool
+from utils.constants import MODEL_NAME
 
 class OutlineDrafterAgent:
-    """Agent Responsible for drafting comprehensive article outlines with research references."""
+    """Agent responsible for drafting comprehensive article outlines with research references."""
 
     @staticmethod
     def load_agent() -> Agent:
         return Agent(
-                role='AI Article Outline Creator',
-                goal=(
-                    "Develop a comprehensive and structured outline for an in-depth article on the provided {topic}. "
-                    "The outline should include clear section headings, subheadings, and bullet points detailing key points to cover. "
-                    "Integrate credible research links and references to substantiate each section, ensuring the content is well-supported and reliable. "
-                    "The final outline should serve as a robust framework that facilitates efficient and high-quality article writing."
-                ),
-                verbose=True,
-                backstory=(
-                    "You are an expert content strategist with a deep understanding of various subjects. "
-                    "Your strength lies in dissecting complex topics into comprehensive, well-organized outlines. "
-                    "You meticulously incorporate relevant research links and references to support each section, "
-                    "ensuring the final article is both informative and authoritative. "
-                    "Your approach is systematic, creative, and tailored to meet the specific needs of diverse audiences."
-                ),
-                tools=[serper_search_tool],
-                llm="ollama/mistral-nemo:latest"
-            )
+            role='AI Article Outline Creator',
+            goal=(
+                "Create a high-level, structured outline for an article about given topic and description."
+                "Focus on organizing the main ideas into distinct sections, providing a clear flow of information. "
+                "The outline should serve as a blueprint for the writing process, setting up a logical sequence of topics that will be expanded upon. "
+                "Incorporate suggestions for research areas to explore further and identify potential sources of credible information to back up the content."
+            ),
+            verbose=True,
+            memory=True,
+            backstory=(
+                "You are a content strategist with a passion for making complex information accessible. "
+                "You excel in breaking down broad topics into manageable sections and suggesting relevant areas for further investigation. "
+                "You believe that a well-structured outline is the cornerstone of effective writing, and you take pride in crafting frameworks that guide writers seamlessly. "
+                "Use your skills to set up a solid foundation for an in-depth article by focusing on the bigger picture and identifying key areas to explore."
+            ),
+            tools=[duck_search_tool],
+            llm=MODEL_NAME
+        )

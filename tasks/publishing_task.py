@@ -1,21 +1,17 @@
 from crewai import Agent, Task
 
-
 class PublishingTask:
-    """Task responsible for assigning publishing article to markdown task to PublisherAgent."""
+    """Task for converting the article into markdown format for publication."""
 
     @staticmethod
     def assign_task(agent: Agent) -> Task:
         return Task(
             description=(
-                "Your task is to transform the final draft article into a clean, well-structured markdown format. "
-                "Ensure all headings, lists, links, images, and code snippets (if any) are formatted correctly using markdown "
-                "syntax. The article should be readable, visually organized, and ready for immediate publication. Here is the final draft you will work with: {enhanced_draft}."
+                'Convert the final draft {enhanced_draft} into a well-structured markdown format. '
+                'Ensure correct markdown syntax for headings, lists, links, and images, making the article publication-ready.'
             ),
             expected_output=(
-                "A fully formatted markdown version of the article. The markdown output should follow best practices with proper "
-                "hierarchy (headings, subheadings), clean lists (ordered/unordered), and ensure any links, images, or other "
-                "embeds are correctly placed. The final output should be publication-ready and saved in a markdown (.md) file."
+                'A markdown file with correct formatting for headings, lists, links, and images, ready for publication.'
             ),
             agent=agent,
             output_file="data/published_article.md"

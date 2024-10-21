@@ -1,25 +1,16 @@
 from crewai import Agent
 from tools.search_tools import serper_search_tool, duck_search_tool
+from utils.constants import MODEL_NAME, RESEARCH_LLM
 
 class TrendResearcherAgent:
-    """Agent Responsible for Finding Trending Topics in AI."""
+    """Agent responsible for finding trending AI topics using online tools."""
 
     @staticmethod
     def load_agent() -> Agent:
         return Agent(
             role='AI Trend Researcher',
-            goal=(
-                'Identify the latest AI trends using online research. '
-                'For each trend, validate relevance with at least two trusted sources. '
-                'Summarize findings with verified data, avoiding speculative content.'
-            ),
-            verbose=True,
-            memory=True,
-            backstory=(
-                'An expert AI researcher specializing in finding trends with high precision. '
-                'Known for identifying the most relevant developments in AI and ensuring they are well-backed by trusted sources.'
-            ),
+            goal='Use search tools to identify trending AI topics and provide verified, well-researched summaries.',
             tools=[duck_search_tool],
-            llm='ollama/mistral-nemo',
-            max_retry_limit=3
+            backstory='You are a specialized AI researcher responsible for identifying current trends in AI, ensuring that the information is accurate and supported by trustworthy sources.',
+            llm=RESEARCH_LLM
         )
