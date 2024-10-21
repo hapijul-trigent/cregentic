@@ -1,6 +1,7 @@
+"""Without Feedback loop"""
 import streamlit as st
 st.set_page_config(
-    page_title="Cregentic | Trigent AXLR8 Labs",
+    page_title="Crigentic | Trigent AXLR8 Labs",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -21,14 +22,11 @@ from tasks.draft_writing_task import DraftWritingTask
 from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
-from tasks.revision_task import TrendingTopicsRevisionTask
+from tasks.refining_task import TrendingTopicsRevisionTask
 
 import pandas as pd
 
-# Commented out the TrendResearcherAgent code as requested
-# research_agent = TrendResearcherAgent.load_agent()
-
-# load other agents
+# Load other agents
 outline_drafter_agent = OutlineDrafterAgent.load_agent()
 draft_writer_agent =  DraftWriterAgent.load_agent()
 story_drafter_agent = StoryDrafterAgent.load_agent()
@@ -44,7 +42,7 @@ editor_reviewing_task = EditorReviewingTask.assign_task(agent=editor_agent)
 publishing_task = PublishingTask.assign_task(agent=publisher_agent)
 refining_task = TrendingTopicsRevisionTask.assign_task(agent=reviser_agent)
 
-def run_drafting_crews(topic: Dict): 
+def run_drafting_crews(topic: Dict):
     """Run all Article Generator crews for given topic."""
     outline_drafter_crew = Crew(
         agents=[outline_drafter_agent],
@@ -52,9 +50,9 @@ def run_drafting_crews(topic: Dict):
         process=Process.sequential,
         verbose=False
     )
-    with st.spinner("Drafting Outline..."):
+    with st.spinner("Drafting Outline"):
         outline = outline_drafter_crew.kickoff(inputs=topic)
-    st.success('Outline Drafted')
+    st.success('Outline Drafting Successful!')
 
     draft_writer_crew = Crew(
         agents=[draft_writer_agent],
@@ -62,53 +60,17 @@ def run_drafting_crews(topic: Dict):
         process=Process.sequential,
         verbose=False
     )
-    with st.spinner("Drafting Article..."):
+    with st.spinner("Drafting Article"):
         draft_writer_crew_inputs = {'outline': outline.raw}
         draft_article = draft_writer_crew.kickoff(inputs=draft_writer_crew_inputs)
-    st.success('Article Drafted')
-    # Feedback loop
-    story_drafter_crew = Crew(
-        agents=[story_drafter_agent],
-        tasks=[story_drafting_task],
-        process=Process.sequential,
-        verbose=False
-    )
+    st.success('Article Drafting Successful!')
 
-    editor_reviewing_crew = Crew(
-        agents=[editor_agent],
-        tasks=[editor_reviewing_task],
-        process=Process.sequential,
-        verbose=False
-    )
-
-    refiner_crew = Crew(
-        agents=[reviser_agent],
-        tasks=[refining_task],
-        process=Process.sequential,
-        verbose=False
-    )
-    with st.spinner("Refining the Article..."):
-        for revision in ['1']:
-            with st.spinner("Editor Reviewing the Article Draft"):
-                editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw, 'outline' : outline.raw}
-                feedback = editor_reviewing_crew.kickoff(inputs=editor_reviewing_crew_inputs)
-            with st.spinner("Working on the Editor's Feedback"):
-                refiner_crew_inputs = {'draft_article': draft_article.raw, 'feedbacks': feedback.raw}
-                draft_article = refiner_crew.kickoff(inputs=refiner_crew_inputs)
-    st.success('Refined Article!')
-    with st.spinner('Drafting Story...'):
-      story_drafter_crew_inputs = {'draft_article': draft_article.raw}
-      enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
-    st.success('Story Drafted')
-    
     return {
         'outline': outline.raw,
         'draft_article': draft_article.raw,
-        'enhanced_draft': enhanced_draft.raw,
-        'feedback': feedback.raw,
     }
 
-def run_publisher_crews(drafting_crews_output: Dict): 
+def run_publisher_crews(drafting_crews_output: Dict):
     """Run all Article Generator crews for given topic."""
     with st.spinner("Publishing Article"):
         publisher_crew = Crew(

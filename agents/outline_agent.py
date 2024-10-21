@@ -10,7 +10,7 @@ class OutlineDrafterAgent:
         return Agent(
             role='AI Article Outline Creator',
             goal=(
-                "Create a high-level, structured outline for an article about given topic and description."
+                "Create a high-level, structured outline for an article about given topic."
                 "Focus on organizing the main ideas into distinct sections, providing a clear flow of information. "
                 "The outline should serve as a blueprint for the writing process, setting up a logical sequence of topics that will be expanded upon. "
                 "Incorporate suggestions for research areas to explore further and identify potential sources of credible information to back up the content."
