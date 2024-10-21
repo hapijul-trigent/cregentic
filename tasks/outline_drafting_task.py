@@ -7,7 +7,7 @@ class OutlineDraftingTask:
     def assign_task(agent: Agent) -> Task:
         return Task(
             description=(
-                "Expand on the high-level outline by creating a detailed and structured draft for the article on {topic}. "
+                "Expand on the high-level outline by creating a detailed and structured draft for the article on given topic: '{topic}' and description : '{description}'."
                 "Develop clear section headings, subheadings, and bullet points for each main idea. "
                 "Incorporate specific research links and references, as well as evidence to support each section, ensuring that each point is well-founded. "
                 "Ensure a logical progression of ideas, so that each section builds naturally upon the previous one to guide the writing process."

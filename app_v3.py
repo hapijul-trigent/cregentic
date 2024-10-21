@@ -21,7 +21,7 @@ from tasks.revision_task import TrendingTopicsRevisionTask
 
 # Set up Streamlit page configuration
 st.set_page_config(
-    page_title="Crigentic | Trigent AXLR8 Labs",
+    page_title="Cregentic | Trigent AXLR8 Labs",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -110,8 +110,6 @@ def run_drafting_crews(topic: Dict):
     with st.spinner("Refining the Article"):
         for revision in ['1']:
 
-            # story_drafter_crew_inputs = {'draft_article': draft_article.raw}
-            # enhanced_draft = story_drafter_crew.kickoff(inputs=story_drafter_crew_inputs)
             with st.spinner("Editor Reviewing the Article Draft"):
                 editor_reviewing_crew_inputs = {'enhanced_draft': draft_article.raw, 'outline' : outline.raw}
                 feedback = editor_reviewing_crew.kickoff(inputs=editor_reviewing_crew_inputs)
@@ -173,7 +171,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.header('Crigentic', divider="rainbow")
+st.header('Cregentic', divider="rainbow")
 
 col1, col2 = st.columns([1.2, 2])
 
@@ -202,7 +200,7 @@ with col1:
             st.write(f"**Description:** {selected_topic['Description']}")
 
         if st.button("Generate Article"):
-            topic = {'topic': str(selected_topic["topic"])}
+            topic = {'topic': str(selected_topic["topic"]), 'description': str(selected_topic["Description"])}
             drafting_crews_output = run_drafting_crews(topic)
             published_article = run_publisher_crews(drafting_crews_output=drafting_crews_output)
 

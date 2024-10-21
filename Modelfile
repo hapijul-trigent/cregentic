@@ -1,7 +1,7 @@
-FROM mistral-nemo:latest
+FROM hermes3:latest
 
 
-PARAMETER temperature 0.7
+PARAMETER temperature 0.5
 
 
 SYSTEM """
