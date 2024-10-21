@@ -18,6 +18,12 @@ from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 from tasks.revision_task import TrendingTopicsRevisionTask
+import agentops
+from dotenv import load_dotenv
+load_dotenv()
+agentops.init(os.environ['AGENTOPS_API_KEY'])
+
+
 
 # Set up Streamlit page configuration
 st.set_page_config(

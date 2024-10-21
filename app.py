@@ -1,6 +1,6 @@
 import streamlit as st
 st.set_page_config(
-    page_title="Crigentic | Trigent AXLR8 Labs",
+    page_title="Cregentic | Trigent AXLR8 Labs",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -30,7 +30,10 @@ from tasks.publishing_task import PublishingTask
 from tasks.revision_task import TrendingTopicsRevisionTask
 import agentops
 import pandas as pd
-# agentops.init("KEY")
+import agentops
+from dotenv import load_dotenv
+load_dotenv()
+agentops.init(os.environ['AGENTOPS_API_KEY'])
 
 # TODO : Venkatesh will add Researcher Agent -> worked on this -> Should connect with Happy and update it.
 # load all agents
@@ -210,7 +213,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.header('Crigentic', divider="rainbow")
+st.header('Cregentic', divider="rainbow")
 
 col1, col2 = st.columns([1.2, 2])
 

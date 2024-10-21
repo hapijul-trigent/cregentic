@@ -1,7 +1,7 @@
 """Without Feedback loop"""
 import streamlit as st
 st.set_page_config(
-    page_title="Crigentic | Trigent AXLR8 Labs",
+    page_title="Cregentic | Trigent AXLR8 Labs",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -9,22 +9,23 @@ import json
 import os
 from typing import Dict
 from crewai import Crew, Process
-
 from agents.outline_agent import OutlineDrafterAgent
 from agents.writer_agent import DraftWriterAgent
 from agents.story_drafter_agent import StoryDrafterAgent
 from agents.editor_agent import EditorAgent
 from agents.publisher_agent import PublisherAgent
 from agents.reviser_agent import TrendingTopicsAIContentReviser
-
 from tasks.outline_drafting_task import OutlineDraftingTask
 from tasks.draft_writing_task import DraftWritingTask
 from tasks.story_drafting_task import StoryDraftingTask
 from tasks.editor_reviewing_task import EditorReviewingTask
 from tasks.publishing_task import PublishingTask
 from tasks.refining_task import TrendingTopicsRevisionTask
-
 import pandas as pd
+import agentops
+from dotenv import load_dotenv
+load_dotenv()
+agentops.init(os.environ['AGENTOPS_API_KEY'])
 
 # Load other agents
 outline_drafter_agent = OutlineDrafterAgent.load_agent()
@@ -126,7 +127,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.header('Crigentic', divider="rainbow")
+st.header('Cregentic', divider="rainbow")
 
 col1, col2 = st.columns([1.2, 2])
 
