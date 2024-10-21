@@ -10,7 +10,7 @@ class TrendResearcherAgent:
         return Agent(
             role='AI Trend Researcher',
             goal='Use search tools to identify trending AI topics and provide verified, well-researched summaries.',
-            tools=[serper_search_tool, duck_search_tool],
+            tools=[duck_search_tool],
             backstory='You are a specialized AI researcher responsible for identifying current trends in AI, ensuring that the information is accurate and supported by trustworthy sources.',
             llm=MODEL_NAME
         )
