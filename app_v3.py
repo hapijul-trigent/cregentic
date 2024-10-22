@@ -21,7 +21,7 @@ from tasks.revision_task import TrendingTopicsRevisionTask
 import agentops
 from dotenv import load_dotenv
 load_dotenv()
-agentops.init(os.environ['AGENTOPS_API_KEY'])
+agentops.init(os.environ["AGENTOPS_KEY"])
 
 
 
@@ -203,10 +203,10 @@ with col1:
         selected_topic = next((item for item in data if item["topic"] == st.session_state['selected_topic']), None)
         if selected_topic:
             st.write(f"**Selected Topic:** {selected_topic['topic']}")
-            st.write(f"**Description:** {selected_topic['Description']}")
+            st.write(f"**Description:** {selected_topic['description']}")
 
         if st.button("Generate Article"):
-            topic = {'topic': str(selected_topic["topic"]), 'description': str(selected_topic["Description"])}
+            topic = {'topic': str(selected_topic["topic"]), 'description': str(selected_topic["description"])}
             drafting_crews_output = run_drafting_crews(topic)
             published_article = run_publisher_crews(drafting_crews_output=drafting_crews_output)
 
